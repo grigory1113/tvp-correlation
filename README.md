@@ -5,6 +5,17 @@ https://img.shields.io/badge/python-3.9+-blue.svg
 A lightweight Python package for estimating time‑varying correlation using a Bayesian Time‑Varying Parameter (TVP) model with stochastic volatility.
 The model is defined as:
 
+$$
+\begin{aligned}
+z_t &= a_{0t} + a_{1t} x_t + \varepsilon_t, \quad \varepsilon_t \sim \mathcal{N}(0, \sigma_t^2), \\
+a_t &= a_{t-1} + u_t, \quad u_t \sim \mathcal{N}(0, \Sigma), \\
+\sigma_t^2 &= \gamma \exp(h_t), \\
+h_{t+1} &= \phi h_t + \eta_t, \quad \eta_t \sim \mathcal{N}(0, \sigma_\eta^2),
+\end{aligned}
+$$
+
+$$
+r_t = \frac{a_{1t} \cdot \sigma_{x,t}}{\sqrt{a_{1t}^2 \cdot \sigma_{x,t}^2 + \sigma_t^2}}.
 
 The package provides a flexible MCMC sampler (Metropolis‑Hastings + Gibbs) to estimate the latent states and parameters. All model hyperparameters are passed explicitly – no hidden configuration files.
 
