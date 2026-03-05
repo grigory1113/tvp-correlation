@@ -20,10 +20,10 @@ $$
 
 The package provides a flexible MCMC sampler (Metropolis‑Hastings + Gibbs) to estimate the latent states and parameters. All model hyperparameters are passed explicitly – no hidden configuration files.
 
-Features
-Bayesian estimation of TVP coefficients and stochastic volatility.
+## Features
+- Bayesian estimation of TVP coefficients and stochastic volatility.
 
-Computation of dynamic correlation with credible intervals.
+- Computation of dynamic correlation with credible intervals.
 
 ## Installation
 
@@ -31,10 +31,12 @@ Computation of dynamic correlation with credible intervals.
 
 ```bash
 pip install git+https://github.com/yourusername/tvp-correlation.git
+```
 
 
 
-Quick Start
+## Quick Start
+
 ```python
 import numpy as np
 from tvp_correlation import TVPModel
@@ -65,8 +67,10 @@ r_mean, r_low, r_up = model.compute_correlation(results)
 # r_mean, r_low, r_up are arrays of length n
 # You can plot them or use them in further analysis
 ```
-API Reference
-TVPModel
+## API Reference
+
+#### TVPModel
+
 The main class for the TVP model.
 
 
