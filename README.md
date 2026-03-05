@@ -7,15 +7,16 @@ The model is defined as:
 
 $$
 \begin{aligned}
-z_t &= a_{0t} + a_{1t} x_t + \varepsilon_t, \quad \varepsilon_t \sim \mathcal{N}(0, \sigma_t^2), \\
-a_t &= a_{t-1} + u_t, \quad u_t \sim \mathcal{N}(0, \Sigma), \\
+z_t = a_{0t} + a_{1t} x_t + \varepsilon_t, \quad \varepsilon_t \sim \mathcal{N}(0, \sigma_t^2), \\
+a_t = a_{t-1} + u_t, \quad u_t \sim \mathcal{N}(0, \Sigma), \\
 \sigma_t^2 &= \gamma \exp(h_t), \\
-h_{t+1} &= \phi h_t + \eta_t, \quad \eta_t \sim \mathcal{N}(0, \sigma_\eta^2),
+h_{t+1} = \phi h_t + \eta_t, \quad \eta_t \sim \mathcal{N}(0, \sigma_\eta^2),
 \end{aligned}
 $$
 
 $$
 r_t = \frac{a_{1t} \cdot \sigma_{x,t}}{\sqrt{a_{1t}^2 \cdot \sigma_{x,t}^2 + \sigma_t^2}}.
+$$
 
 The package provides a flexible MCMC sampler (Metropolis‑Hastings + Gibbs) to estimate the latent states and parameters. All model hyperparameters are passed explicitly – no hidden configuration files.
 
@@ -23,12 +24,6 @@ Features
 Bayesian estimation of TVP coefficients and stochastic volatility.
 
 Computation of dynamic correlation with credible intervals.
-
-Modular design: each MCMC step is implemented in separate functions (see samplers.py).
-
-No external dependencies beyond NumPy, SciPy, and tqdm.
-
-Easy to integrate into other projects.
 
 Installation
 From GitHub
@@ -39,8 +34,9 @@ bash
 git clone https://github.com/yourusername/tvp-correlation.git
 cd tvp-correlation
 pip install -e .
+
 Quick Start
-python
+```python
 import numpy as np
 from tvp_correlation import TVPModel
 
