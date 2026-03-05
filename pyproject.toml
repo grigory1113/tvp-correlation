@@ -13,8 +13,5 @@ dependencies = [
 ]
 
 [tool.setuptools.packages.find]
-where = ["src"]          # ищем пакеты внутри папки src
-include = ["*"]          # включаем всё, что найдём
-
-[tool.setuptools.package-dir]
-"" = "src"               # корень пакетов — папка src
+where = ["."]
+include = ["tvp_correlation*"]
