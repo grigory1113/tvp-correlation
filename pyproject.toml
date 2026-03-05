@@ -11,3 +11,10 @@ dependencies = [
     "matplotlib>=3.5",
     "tqdm>=4.64",
 ]
+
+[tool.setuptools.packages.find]
+where = ["src"]          # ищем пакеты внутри папки src
+include = ["*"]          # включаем всё, что найдём
+
+[tool.setuptools.package-dir]
+"" = "src"               # корень пакетов — папка src
