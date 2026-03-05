@@ -1,6 +1,4 @@
 TVP Correlation
-https://img.shields.io/badge/License-MIT-yellow.svg
-https://img.shields.io/badge/python-3.9+-blue.svg
 
 A lightweight Python package for estimating time‑varying correlation using a Bayesian Time‑Varying Parameter (TVP) model with stochastic volatility.
 The model is defined as:
@@ -27,15 +25,14 @@ Bayesian estimation of TVP coefficients and stochastic volatility.
 
 Computation of dynamic correlation with credible intervals.
 
-Installation
-From GitHub
-bash
+## Installation
+
+### From GitHub
+
+```bash
 pip install git+https://github.com/yourusername/tvp-correlation.git
-Editable install for development
-bash
-git clone https://github.com/yourusername/tvp-correlation.git
-cd tvp-correlation
-pip install -e .
+
+
 
 Quick Start
 ```python
@@ -94,7 +91,7 @@ The main class for the TVP model.
 
 ## Methods
 
-### `run(z, x, progress_bar=True)`
+#### `run(z, x, progress_bar=True)`
 Runs the MCMC algorithm.
 
 **Parameters:**
@@ -117,7 +114,7 @@ A dictionary containing all MCMC samples with the following keys:
 
 ---
 
-### `compute_correlation(results, burn_in=None, x_variance=None)`
+#### `compute_correlation(results, burn_in=None, x_variance=None)`
 Computes the dynamic correlation from the MCMC samples.
 
 **Parameters:**
@@ -133,9 +130,6 @@ A tuple `(r_mean, r_low, r_up)` where each element is a NumPy array of length `n
 - `r_mean` — posterior mean correlation
 - `r_low` — lower bound of the 95% credible interval (2.5th percentile)
 - `r_up` — upper bound of the 95% credible interval (97.5th percentile)
-
-License
-This project is licensed under the MIT License – see the LICENSE file for details.
 
 Citation
 If you use this code in your research, please cite:
