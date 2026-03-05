@@ -61,10 +61,10 @@ results = model.run(z, x_design, progress_bar=True)
 
 # Compute dynamic correlation (assuming variance of x = 1)
 r_mean, r_low, r_up = model.compute_correlation(results)
-```
 
 # r_mean, r_low, r_up are arrays of length n
 # You can plot them or use them in further analysis
+```
 API Reference
 TVPModel
 The main class for the TVP model.
