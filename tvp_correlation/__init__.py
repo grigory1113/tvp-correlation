@@ -1,6 +1,6 @@
 """Time-Varying Parameter model with stochastic volatility."""
 
-from src.samplers import (
+from tvp_correlation.samplers import (
     get_single_mcmc_sample,
     sample_Sigma,
     sample_h_single,
@@ -8,7 +8,7 @@ from src.samplers import (
     sample_gamma_gibbs,
     sample_sigma2_eta_gibbs,
 )
-from src.main import Model
+from tvp_correlation.main import Model
 
 __all__ = [
     "TVPConfig",
