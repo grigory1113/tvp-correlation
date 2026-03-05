@@ -2,6 +2,14 @@ import numpy as np
 from tqdm import tqdm
 from typing import Optional, Tuple
 
+from tvp_correlation.samplers import (
+    get_single_mcmc_sample,
+    sample_Sigma,
+    sample_h_single,
+    sample_phi_mh,
+    sample_gamma_gibbs,
+    sample_sigma2_eta_gibbs,
+)
 
 class Model:
     """Model of correlation computing based on Time-Varying Parameter with stochastic volatility model.
@@ -111,7 +119,7 @@ class Model:
             # --- Sample h (volatility latent states) ---
             for i in range(n):
                 if (i > 0) and (i < (n - 1)):
-                    h_est[k, i] = bs.get_single_mcmc_sample(
+                    h_est[k, i] = get_single_mcmc_sample(
                         h_est[k - 1, i - 1], h_est[k - 1, i + 1],
                         phi_est[k - 1], sigma2_eta_est[k - 1],
                         z[i, 0], a_est[k, i, 0], a_est[k, i, 1],
@@ -119,7 +127,7 @@ class Model:
                         is_first=True, is_last=True, num_samples=1
                     )
                 elif i == 0:
-                    h_est[k, i] = bs.get_single_mcmc_sample(
+                    h_est[k, i] = get_single_mcmc_sample(
                         0, h_est[k - 1, i + 1],
                         phi_est[k - 1], sigma2_eta_est[k - 1],
                         z[i, 0], a_est[k, i, 0], a_est[k, i, 1],
@@ -127,7 +135,7 @@ class Model:
                         is_first=False, is_last=True, num_samples=1
                     )
                 elif i == n - 1:
-                    h_est[k, i] = bs.get_single_mcmc_sample(
+                    h_est[k, i] = get_single_mcmc_sample(
                         h_est[k - 1, i - 1], 0,
                         phi_est[k - 1], sigma2_eta_est[k - 1],
                         z[i, 0], a_est[k, i, 0], a_est[k, i, 1],
@@ -136,11 +144,11 @@ class Model:
                     )
 
             # --- Sample Sigma ---
-            Sigma_est = bs.sample_Sigma(a_est[k, :, :], Sigma_est, self.mu0)
+            Sigma_est = sample_Sigma(a_est[k, :, :], Sigma_est, self.mu0)
 
             # --- Sample phi (optional) ---
             if self.sample_phi:
-                phi_est[k] = bs.sample_phi_mh(
+                phi_est[k] = sample_phi_mh(
                     phi_est[k - 1], h_est[k, :], sigma2_eta_est[k - 1],
                     self.alpha_phi0, self.beta_phi0
                 )
@@ -148,14 +156,14 @@ class Model:
                 phi_est[k] = phi_est[k - 1]
 
             # --- Sample sigma2_eta ---
-            sigma2_eta_est[k] = bs.sample_sigma2_eta_gibbs(
+            sigma2_eta_est[k] = sample_sigma2_eta_gibbs(
                 h_est[k, :], phi_est[k],
                 self.nu0_sigma2_eta, self.V0_sigma2_eta
             )
 
             # --- Sample gamma (optional) ---
             if self.sample_gamma:
-                gamma_est[k] = bs.sample_gamma_gibbs(
+                gamma_est[k] = sample_gamma_gibbs(
                     z, x, a_est[k, :, :], h_est[k, :],
                     self.gamma_0, self.V0_gamma
                 )
