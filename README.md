@@ -1,4 +1,4 @@
-TVP Correlation
+# TVP Correlation
 
 A lightweight Python package for estimating time‑varying correlation using a Bayesian Time‑Varying Parameter (TVP) model with stochastic volatility.
 The model is defined as:
