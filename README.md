@@ -50,7 +50,7 @@ z = 0.5 + 0.3 * x + 0.2 * np.random.randn(n, 1)  # dependent variable (simplifie
 x_design = np.hstack([np.ones((n, 1)), x])
 
 # Create model with custom settings
-model = TVPModel(
+model = Model(
     num_iters=2000,          # number of MCMC iterations
     burn_in=1800,            # burn-in period
     sample_phi=False,        # fix phi to initial value (no sampling)
@@ -69,7 +69,7 @@ r_mean, r_low, r_up = model.compute_correlation(results)
 ```
 ## API Reference
 
-#### TVPModel
+#### Model
 
 The main class for the TVP model.
 
