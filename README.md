@@ -1,5 +1,7 @@
 # TVP Correlation
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 A lightweight Python package for estimating time‑varying correlation using a Bayesian Time‑Varying Parameter (TVP) model with stochastic volatility.
 The model is defined as:
 
@@ -134,3 +136,7 @@ A tuple `(r_mean, r_low, r_up)` where each element is a NumPy array of length `n
 - `r_mean` — posterior mean correlation
 - `r_low` — lower bound of the 95% credible interval (2.5th percentile)
 - `r_up` — upper bound of the 95% credible interval (97.5th percentile)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
